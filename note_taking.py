@@ -1,3 +1,5 @@
+#note_taking.py
+#добавление, эмбеддинг и поиск заметок
 
 async def note_embedding(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user = update.effective_user

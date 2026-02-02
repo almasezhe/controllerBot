@@ -1,3 +1,4 @@
 .env
-vectors.db
+storage.db
 bot.log
+__pycache__

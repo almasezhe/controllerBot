@@ -1,4 +1,5 @@
-import logging
+#main.py 
+# основная логика бота
 import os
 import pickle
 
@@ -17,21 +18,12 @@ from telegram.ext import (
     MessageHandler,
     filters,
 )
-
-import note_taking
+from db import log
+from note_taking import note_embedding, faiss_search
+from tracker import add_record, delete, last, total
 #import todo
 #TODO todo 
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
-    handlers=[
-        logging.StreamHandler(),
-        logging.FileHandler("bot.log"),
-    ],
-)
-
-log = logging.getLogger("telegram-bot")
 
 # ───────────────────────── ENV ─────────────────────────
 
@@ -110,6 +102,10 @@ if __name__ == "__main__":
     app.add_handler(CommandHandler("hello", hello))
     app.add_handler(CommandHandler("note", note_embedding))
     app.add_handler(CommandHandler("search", faiss_search))
+    app.add_handler(CommandHandler("addrecord", add_record))
+    app.add_handler(CommandHandler("deleterecord", delete))
+    app.add_handler(CommandHandler("last", last))
+    app.add_handler(CommandHandler("total", total))
     app.add_handler(MessageHandler(filters.VOICE, transcript_voice))
 
     log.info("Bot is running")
