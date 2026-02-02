@@ -77,8 +77,12 @@ async def last(update:Update,context: ContextTypes.DEFAULT_TYPE):
     out = []
     for r in rows:
         out.append(f"{r[0]} | {r[2]}₸ | {r[1]} | {r[3]} | {r[4]}")
-
+    if not out:
+        await update.message.reply_text("Пока записей нет")
+        return
+    
     await update.message.reply_text("\n".join(out))
+    
 
 async def total(update:Update, context: ContextTypes.DEFAULT_TYPE):
     cursor.execute("""
