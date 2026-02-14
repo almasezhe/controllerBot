@@ -54,4 +54,19 @@ CREATE TABLE IF NOT EXISTS Finances (
 )
 """)
 
+log.info("Ensuring table FoodTracker exists")
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS FoodTracker (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,              -- название еды
+    calories INTEGER NOT NULL,       -- калории
+    protein REAL DEFAULT 0,          -- белки
+    fat REAL DEFAULT 0,              -- жиры
+    carbs REAL DEFAULT 0,            -- углеводы
+    weight REAL DEFAULT 0,           -- вес в граммах
+    meal_type TEXT,                  -- breakfast / lunch / dinner / snack
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP
+)
+""")
+
 connection.commit()

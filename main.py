@@ -20,7 +20,16 @@ from telegram.ext import (
 )
 from db import log
 #from note_taking import note_embedding, faiss_search
-from tracker import add_record, delete, last, total
+from tracker import (
+    add_record,
+    delete,
+    last,
+    total,
+    addfood,
+    lastfood,
+    todaycal,
+    deletefood,
+)
 #import todo
 #TODO todo 
 
@@ -106,11 +115,20 @@ if __name__ == "__main__":
     app.add_handler(CommandHandler("hello", hello))
     #app.add_handler(CommandHandler("note", note_embedding))
     #app.add_handler(CommandHandler("search", faiss_search))
+    # финансы
     app.add_handler(CommandHandler("addrecord", add_record))
     app.add_handler(CommandHandler("deleterecord", delete))
     app.add_handler(CommandHandler("last", last))
     app.add_handler(CommandHandler("total", total))
+
     #app.add_handler(MessageHandler(filters.VOICE, transcript_voice))
+
+    app.add_handler(CommandHandler("addfood", addfood))
+    app.add_handler(CommandHandler("lastfood", lastfood))
+    app.add_handler(CommandHandler("todaycal", todaycal))
+    app.add_handler(CommandHandler("deletefood", deletefood))
+
+
     app.add_error_handler(error_handler)
 
     log.info("Bot is running")
